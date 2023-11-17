@@ -1,5 +1,5 @@
 import React from 'react';
-import recyclingImage from '/home/darragh/Github/recycleme/src/recycling.jpg'; // adjust the path as needed
+import recyclingImage from '/Users/THINKPAD/recycleme/src/recycling.jpg'; // adjust the path as needed
 
 function Home() {
   return (
