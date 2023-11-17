@@ -1,32 +1,13 @@
-import React, { useState, useEffect } from 'react';
+// HowToRecycle.js
+
+import React from 'react';
 
 function HowToRecycle() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api.json'); // Adjust the path as needed
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div>
       <h1>How to Recycle</h1>
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            <strong>{item.name}</strong> - Material: {item.material}, Value: {item.value}
-          </li>
-        ))}
-      </ul>
+      <p>Information on how to recycle items.</p>
+      {/* Add more content as needed */}
     </div>
   );
 }

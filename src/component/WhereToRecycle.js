@@ -8,15 +8,21 @@ const materialLocationMap = {
 
 function WhereToRecycle() {
   const [items, setItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
   const [selectedMaterial, setSelectedMaterial] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api.json'); // Adjust the path as needed
+        const response = await fetch('/api.json');
         const data = await response.json();
-        setItems(data);
+
+        if (Array.isArray(data)) {
+          setItems(data);
+        } else if (data && data.items && Array.isArray(data.items)) {
+          setItems(data.items);
+        } else {
+          console.error('Fetched data is not in the expected format:', data);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -26,12 +32,17 @@ function WhereToRecycle() {
   }, []);
 
   const filterByMaterial = (material) => {
+    if (!Array.isArray(items)) {
+      console.error('Items is not an array:', items);
+      return;
+    }
+
     const filtered = items.filter((item) => item.material === material);
-    setFilteredItems(filtered);
     setSelectedMaterial(material);
+    setItems(filtered); // Update the state with the filtered items
   };
 
-  const getNames = () => filteredItems.map((item) => item.name);
+  const getNames = () => items.map((item) => item.name);
 
   const getLocation = () => materialLocationMap[selectedMaterial];
 

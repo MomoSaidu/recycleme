@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function RecycleItem() {
+const RecycleItem = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedMaterial, setSelectedMaterial] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,9 +48,33 @@ function RecycleItem() {
 
   const getLocation = () => {
     if (selectedMaterial && items[selectedMaterial]) {
-      return items[selectedMaterial][0]?.location || 'Unknown Location';
+      const location = items[selectedMaterial][0]?.location;
+      // Check if the location is available
+      if (location) {
+        return (
+          <Link to="/where-to-recycle" style={{ textDecoration: 'none' }}>
+            {location}
+          </Link>
+        );
+      }
     }
-    return 'Unknown Location';
+    // Default link if no location is available
+    return (
+      <Link to="/where-to-recycle" style={{ textDecoration: 'none' }}>
+        Where to Recycle 
+      </Link>
+    );
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filterByName = () => {
+    const filtered = filteredItems.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredItems(filtered);
   };
 
   return (
@@ -69,18 +95,34 @@ function RecycleItem() {
           {selectedMaterial && (
             <div>
               <h2>{selectedMaterial} Items:</h2>
+
+              {/* Conditionally render the search bar only when a material is selected */}
+              {selectedMaterial && (
+                <>
+                  <input
+                    type="text"
+                    placeholder={`Search ${selectedMaterial} by name...`}
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                  />
+                  <button onClick={filterByName}>Search</button>
+                </>
+              )}
+
               <ul>
                 {getNames().map((name, index) => (
                   <li key={index}>{name}</li>
                 ))}
               </ul>
-              <p>Location: {getLocation()}</p>
+              <p>
+                Location: {getLocation()}
+              </p>
             </div>
           )}
         </div>
       )}
     </div>
   );
-}
+};
 
 export default RecycleItem;
