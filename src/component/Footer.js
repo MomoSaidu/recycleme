@@ -1,10 +1,9 @@
 // Footer.js
-
 import React from 'react';
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <p>Follow us on:</p>
       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
       <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>

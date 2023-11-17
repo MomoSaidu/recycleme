@@ -2,6 +2,45 @@
   text-align: center;
 }
 
+.header {
+  background-color: #90ee90; /* light green */
+}
+
+.title {
+  color: #006400; /* dark green */
+}
+
+.navbar {
+  color: #006400; /* dark green */
+  padding: 10px;
+}
+
+.navbar a {
+  margin: 10px;
+  color: #006400; /* dark green */
+  text-decoration: none;
+}
+
+/* rest of your css */
+.footer {
+  background-color: #90ee90; /* light green */
+  padding: 10px;
+  color: #006400; /* dark green */
+}
+
+.footer a {
+  margin: 10px;
+  color: #006400; /* dark green */
+  text-decoration: none;
+}
+
+/* rest of your css */
+
+
+.App {
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
