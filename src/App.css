@@ -78,3 +78,19 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* Apply styles to all <p> tags */
+p {
+  font-family: 'Arial', sans-serif;  /* Change the font family */
+  font-size: 32px;  /* Change the font size */
+  line-height: 1.5;  /* Adjust the line height for better readability */
+  color: #333;  /* Set the text color */
+  margin-bottom: 15px;  /* Add some bottom margin for spacing between paragraphs */
+}
+
+/* Apply specific styles to <p> tags with a class of 'highlight' */
+p.highlight {
+  background-color: green;  /* Change the background color for highlighted paragraphs */
+  font-weight: bold;  /* Make the text bold */
+}
+
