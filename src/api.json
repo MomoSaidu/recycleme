@@ -1,0 +1,18 @@
+{
+    "Metal": [
+        {"name": "Metallic Spoon", "material": "Metal"},
+        {"name": "Metallic Keychain", "material": "Metal"},
+        {"name": "Metallic Frame", "material": "Metal"}
+    ],
+    "Cardboard": [
+        {"name": "Cardboard Box", "material": "Cardboard"},
+        {"name": "Cardboard Bookshelf", "material": "Cardboard"},
+        {"name": "Cardboard Picture Frame", "material": "Cardboard"}
+    ],
+    "Plastic": [
+        {"name": "Plastic Bottle", "material": "Plastic"},
+        {"name": "Plastic Chair", "material": "Plastic"},
+        {"name": "Plastic Toy", "material": "Plastic"},
+        {"name": "Plastic Container", "material": "Plastic"}
+    ]
+}
