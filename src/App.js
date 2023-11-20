@@ -12,18 +12,21 @@ import Footer from './component/Footer';
 import './App.css';
 
 function App() {
+
   return (
     <Router>
       <div className="App">
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/recycle-item" element={<RecycleItem />} />
-          <Route path="/where-to-recycle" element={<WhereToRecycle />} />
-          <Route path="/how-to-recycle" element={<HowToRecycle />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/news" element={<News />} />
-        </Routes>
+        <div className="page-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/recycle-item" element={<RecycleItem />} />
+            <Route path="/where-to-recycle" element={<WhereToRecycle />} />
+            <Route path="/how-to-recycle" element={<HowToRecycle />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/news" element={<News />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>

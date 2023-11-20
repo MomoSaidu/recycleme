@@ -1,96 +1,290 @@
+/* General Styles */
 body {
-  background-color: rgba(144, 238, 144, 0.25); /* light green with 25% transparency */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  background-color: rgba(144, 238, 144, 0.25);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: margin-left 0.9s;
 }
 
+/* Header Styles */
 .header {
-  background-color: #ffffff; /* light green */
-  margin: 0; /* Remove default margin */
-  padding: 20px; /* Adjust padding as needed */
+  background-color: #ffffff;
+  margin: 0;
+  padding: 20px;
 }
 
-.title {
-  color: #006400; /* dark green */
-}
-
+/* Navigation Styles */
 .navbar {
-  color: #006400; /* dark green */
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navbar a {
-  margin: 10px;
-  color: #006400; /* dark green */
+.logo img {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+/* Navigation Link Styles */
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav a,
+.nav-link {
+  color: #47c542; /* Light grey color */
   text-decoration: none;
+  margin-left: 0.5px; /* Further reduced margin to bring links closer */
 }
 
-/* rest of your css */
+.nav a:hover {
+  color: #2e7d32;
+}
+
+.nav-link {
+  font-size: 1.2em; /* Increase font size */
+  padding: 8px 12px; /* Add padding for a nicer finish */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for button effect */
+}
+
+.nav-link:hover {
+  background-color: #008000;
+}
+
+/* Footer Styles */
 .footer {
-  background-color: #fcfcfc; /* Same as header color */
-  padding: 10px;
-  color: #006400; /* dark green */
+  background-color: rgba(144, 238, 144, 0.25);
+  padding: 20px;
+  text-align: center;
+  color: #006400;
 }
 
 .footer a {
   margin: 10px;
-  color: #006400; /* dark green */
+  color: #006400;
   text-decoration: none;
 }
 
-/* rest of your css */
-
+/* App Styles */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Apply styles to all <p> tags */
+/* Paragraph Styles */
 p {
-  font-family: 'Arial', sans-serif;  /* Change the font family */
-  font-size: 32px;  /* Change the font size */
-  line-height: 1.5;  /* Adjust the line height for better readability */
-  color: #333;  /* Set the text color */
-  margin-bottom: 15px;  /* Add some bottom margin for spacing between paragraphs */
+  font-family: 'Arial', sans-serif;
+  font-size: 32px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-/* Apply specific styles to <p> tags with a class of 'highlight' */
 p.highlight {
-  background-color: green;  /* Change the background color for highlighted paragraphs */
-  font-weight: bold;  /* Make the text bold */
+  background-color: green;
+  font-weight: bold;
 }
+
+/* News Styles */
+.news-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.news-card {
+  width: 300px;
+  margin: 20px;
+}
+
+.read-more-button {
+  margin-top: 10px;
+}
+
+/* About Styles */
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: rgba(248, 249, 250, 0.5); /* 50% transparent background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-container,
+.text-container {
+  flex-basis: 48%;
+}
+
+/* Green Text Styles */
+h2,
+h3,
+.green-text,
+.contact-link {
+  color: #218838;
+  font-size: 1.5em; /* Adjust the font size for green text */
+}
+
+.body-text {
+  font-size: 1.8em; /* Adjust the font size for body text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .image-container,
+  .text-container {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+/* Where to Recycle Styles */
+.where-to-recycle-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.where-to-recycle-heading {
+  font-size: 2rem;
+  color: #006400;
+  margin-bottom: 20px;
+}
+
+.loading-message,
+.error-message,
+.user-location {
+  font-size: 1.2rem;
+}
+
+.recycling-locations,
+.item-list {
+  list-style: none;
+  padding: 0;
+}
+
+.recycling-location-item {
+  margin-bottom: 15px;
+}
+
+.recycling-location-name,
+.item-name,
+.location-text {
+  font-size: 1.2rem;
+  color: #006400;
+  margin-bottom: 5px;
+}
+
+.recycling-location-address {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Recycle Styles */
+.recycle-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.recycle-heading,
+.selected-material-heading {
+  font-size: 24px;
+  color: #006400;
+}
+
+.material-buttons {
+  display: flex;
+  justify-content: center; /* Update to center to align buttons at the center */
+  margin-bottom: 20px;
+}
+
+.material-button,
+.search-button {
+  background-color: #008000;
+  color: #fff;
+  padding: 10px 15px; /* Adjusted padding for a slightly more compact button */
+  border: none;
+  cursor: pointer;
+}
+
+.selected-material-container {
+  margin-top: 20px;
+}
+
+.search-bar-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+
+/* Home Styles */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.home-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.home-description {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  margin-left: 20px;
+}
+
+.home-image-container {
+  flex: 1;
+  max-width: 100%;
+}
+
+.home-image {
+  width: 100%;
+  height: auto;
+}
+
+/* Social Link Styles */
+.social-link {
+  color: #006400;
+  margin: 0 5px; /* Reduced margin to bring links closer */
+  text-decoration: none;
+}
+
+.social-link:hover {
+  text-decoration: underline;
+}
+/* ... (your existing styles) */
 

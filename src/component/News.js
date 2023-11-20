@@ -1,55 +1,55 @@
-// News.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Card, Button, Input } from 'antd';
+import axios from 'axios';
+import 'antd/dist/antd'; // Import Ant Design styles
+
+const { Meta } = Card;
+const { Search } = Input;
 
 function News() {
-  const [items, setItems] = useState([]);
+  const [news, setNews] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/home/darragh/Github/recycleme/src/api.json');
-        const data = await response.json();
-        console.log('Data loaded:', data);
-        setItems(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // Function to filter and map items based on the material key
-  const filterAndMapItems = (material) => {
-    return items[material] ? items[material].map((item, index) => (
-      <li key={index}>
-        <strong>Name:</strong> {item.name}, <strong>Material:</strong> {item.material}
-      </li>
-    )) : [];
+  const handleSearch = async (value) => {
+    try {
+      const response = await axios.get(
+        `http://newsapi.org/v2/everything?q=${value}&apiKey=223d2ddedac44d4fbc89d39b95d9f69c`
+      );
+      setNews(response.data.articles);
+    } catch (error) {
+      console.error('Error fetching news:', error);
+    }
   };
 
-  console.log('Items:', items);
-
   return (
-    <div>
-      <h1>News</h1>
-      <p>Latest news and updates.</p>
+    <div className="news-container">
+      <div className="search-container">
+        <Search
+          placeholder="Search for news"
+          allowClear
+          enterButton="Search"
+          onSearch={handleSearch}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
-      {/* Display information for each key separately */}
-      <h2>Metal Items:</h2>
-      <ul>
-        {filterAndMapItems('Metal')}
-      </ul>
-
-      <h2>Cardboard Items:</h2>
-      <ul>
-        {filterAndMapItems('Cardboard')}
-      </ul>
-
-      <h2>Plastic Items:</h2>
-      <ul>
-        {filterAndMapItems('Plastic')}
-      </ul>
+      {news &&
+        news.map((item, index) => (
+          <Card
+            key={index}
+            hoverable
+            className="news-card"
+            cover={<img alt={`News article - ${item.title}`} src={item.urlToImage} />}
+          >
+            <Meta title={item.title} description={item.content} />
+            <a href={item.url} target="_blank" rel="noopener noreferrer">
+              <Button type="primary" className="read-more-button">
+                Read More
+              </Button>
+            </a>
+          </Card>
+        ))}
     </div>
   );
 }

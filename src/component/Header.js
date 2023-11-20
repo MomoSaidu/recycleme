@@ -1,4 +1,3 @@
-// Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,11 +14,11 @@ function Header() {
         </Link>
       </h1>
       <nav className="navbar">
-        <Link to="/recycle-item">Recycle Item</Link>
-        <Link to="/where-to-recycle">Where To Recycle</Link>
-        <Link to="/how-to-recycle">How To Recycle</Link>
-        <Link to="/about">About</Link>
-        <Link to="/news">News</Link>
+        <Link className="nav-link" to="/recycle-item">Recycle Item</Link>
+        <Link className="nav-link" to="/where-to-recycle">Where To Recycle</Link>
+        <Link className="nav-link" to="/how-to-recycle">How To Recycle</Link>
+        <Link className="nav-link" to="/about">About</Link>
+        <Link className="nav-link" to="/news">News</Link>
       </nav>
     </div>
   );

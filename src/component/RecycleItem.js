@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
 
 const RecycleItem = () => {
   const [items, setItems] = useState([]);
@@ -8,18 +9,18 @@ const RecycleItem = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showItemList, setShowItemList] = useState(false);
+  const [suggestedItems, setSuggestedItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api.json'); // Use the correct path
-        console.log(response); // Log the response to inspect it
+        const response = await fetch('/api.json');
 
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.statusText}`);
         }
 
-        // Check if the 'Content-Type' is 'application/json'
         const contentType = response.headers.get('Content-Type');
         if (!contentType || !contentType.includes('application/json')) {
           throw new Error(`Invalid content type: ${contentType}`);
@@ -42,83 +43,80 @@ const RecycleItem = () => {
     const filtered = items[material] || [];
     setFilteredItems(filtered);
     setSelectedMaterial(material);
+    setShowItemList(false);
+    setSuggestedItems(filtered.map((item) => ({ value: item.name, label: item.name })));
   };
 
-  const getNames = () => filteredItems.map((item) => item.name);
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
 
-  const getLocation = () => {
-    if (selectedMaterial && items[selectedMaterial]) {
-      const location = items[selectedMaterial][0]?.location;
-      // Check if the location is available
-      if (location) {
-        return (
-          <Link to="/where-to-recycle" style={{ textDecoration: 'none' }}>
-            {location}
-          </Link>
-        );
-      }
-    }
-    // Default link if no location is available
-    return (
-      <Link to="/where-to-recycle" style={{ textDecoration: 'none' }}>
-        Where to Recycle 
-      </Link>
+    // Filter items based on the search term
+    const filtered = suggestedItems.filter((item) =>
+      item.label.toLowerCase().includes(value.toLowerCase())
     );
-  };
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filterByName = () => {
-    const filtered = filteredItems.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // Update filtered items and showItemList state
     setFilteredItems(filtered);
+    setShowItemList(value.length > 0); // Show suggestions only if the search term is not empty
   };
 
   return (
-    <div>
-      <h1>Material Search</h1>
+    <div className="recycle-container">
+      <h1 className="recycle-heading">Select Material to search:</h1>
 
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       {!loading && !error && (
         <div>
-          {Object.keys(items).map((material) => (
-            <button key={material} onClick={() => filterByMaterial(material)}>
-              Search {material}
-            </button>
-          ))}
-
           {selectedMaterial && (
-            <div>
-              <h2>{selectedMaterial} Items:</h2>
-
-              {/* Conditionally render the search bar only when a material is selected */}
-              {selectedMaterial && (
-                <>
-                  <input
-                    type="text"
-                    placeholder={`Search ${selectedMaterial} by name...`}
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                  />
-                  <button onClick={filterByName}>Search</button>
-                </>
-              )}
-
-              <ul>
-                {getNames().map((name, index) => (
-                  <li key={index}>{name}</li>
-                ))}
-              </ul>
-              <p>
-                Location: {getLocation()}
-              </p>
+            <div className="selected-material-container">
+              <h2 className="selected-material-heading">
+               {selectedMaterial}
+              </h2>
             </div>
           )}
+
+          <div className="material-buttons">
+            {Object.keys(items).map((material) => (
+              <button
+                key={material}
+                onClick={() => filterByMaterial(material)}
+                className="material-button"
+              >
+                {material}
+              </button>
+            ))}
+          </div>
+
+          {/* Search box for items */}
+          <div className="search-bar-container">
+            <Select
+              options={suggestedItems}
+              value={{ value: searchTerm, label: searchTerm }}
+              onChange={(selectedOption) => handleSearchChange(selectedOption.value)}
+              placeholder="Search for an item..."
+            />
+          </div>
+
+          {selectedMaterial && showItemList && (
+            <div className="selected-material-container">
+              <ul className="item-list">
+                {filteredItems.map((name, index) => (
+                  <li key={index} className="item-name">
+                    <Link to="/where-to-recycle" className="location-link">
+                      {name.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Image container */}
+          <div className="image-container">
+            <img src="/RecycleItemImage.jpg" alt="Background Image" />
+          </div>
         </div>
       )}
     </div>
