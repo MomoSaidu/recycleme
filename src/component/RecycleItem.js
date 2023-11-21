@@ -97,18 +97,22 @@ const RecycleItem = () => {
           </div>
 
           {selectedMaterial && showItemList && (
-            <div className="selected-material-container">
-              <ul className="item-list">
-                {filteredItems.map((item, index) => (
-                  <li key={index} className="item-name">
-                    <Link to="/where-to-recycle" className="location-link">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+  <div className="selected-material-container">
+    <ul className="item-list">
+      {filteredItems.map((item, index) => (
+        <li key={index} className="item-name">
+          <Link to="/where-to-recycle" className="location-link">
+            <button className="location-button">
+              {item.label}
+            </button>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
+
 
           {/* Image container */}
           <div className="image-container">

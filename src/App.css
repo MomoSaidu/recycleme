@@ -314,3 +314,34 @@ h3,
   background-color: #004d00;
 }
 
+
+.item-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item-name {
+  margin-bottom: 10px; /* Adjust as needed */
+}
+
+.location-link {
+  text-decoration: none;
+}
+
+.location-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #4caf50; /* Green background color, change as needed */
+  color: white;
+  border: 1px solid #4caf50; /* Matching border color */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.location-button:hover {
+  background-color: #45a049; /* Darker green on hover, change as needed */
+}
