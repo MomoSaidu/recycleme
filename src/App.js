@@ -7,7 +7,6 @@ import About from './component/About';
 import Header from './component/Header';
 import News from './component/News';
 import Home from './component/Home';
-import HowToRecycle from './component/HowToRecycle';
 import Footer from './component/Footer';
 import './App.css';
 
@@ -22,7 +21,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/recycle-item" element={<RecycleItem />} />
             <Route path="/where-to-recycle" element={<WhereToRecycle />} />
-            <Route path="/how-to-recycle" element={<HowToRecycle />} />
             <Route path="/about" element={<About />} />
             <Route path="/news" element={<News />} />
           </Routes>

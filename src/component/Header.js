@@ -16,7 +16,6 @@ function Header() {
       <nav className="navbar">
         <Link className="nav-link" to="/recycle-item">Recycle Item</Link>
         <Link className="nav-link" to="/where-to-recycle">Where To Recycle</Link>
-        <Link className="nav-link" to="/how-to-recycle">How To Recycle</Link>
         <Link className="nav-link" to="/about">About</Link>
         <Link className="nav-link" to="/news">News</Link>
       </nav>

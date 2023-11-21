@@ -6,36 +6,35 @@ const RecycleItem = () => {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedMaterial, setSelectedMaterial] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [status, setStatus] = useState({ loading: true, error: null });
   const [searchTerm, setSearchTerm] = useState('');
   const [showItemList, setShowItemList] = useState(false);
   const [suggestedItems, setSuggestedItems] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api.json');
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api.json');
 
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data: ${response.statusText}`);
-        }
-
-        const contentType = response.headers.get('Content-Type');
-        if (!contentType || !contentType.includes('application/json')) {
-          throw new Error(`Invalid content type: ${contentType}`);
-        }
-
-        const data = await response.json();
-        setItems(data);
-        setLoading(false);
-      } catch (error) {
-        setError(`Error fetching data: ${error.message}`);
-        setLoading(false);
-        console.error('Error fetching data:', error);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
-    };
 
+      const contentType = response.headers.get('Content-Type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Invalid content type: ${contentType}`);
+      }
+
+      const data = await response.json();
+      setItems(data);
+      setStatus({ loading: false, error: null });
+    } catch (error) {
+      const errorMessage = `Error fetching data: ${error.message}`;
+      setStatus({ loading: false, error: errorMessage });
+      console.error(errorMessage);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -47,33 +46,31 @@ const RecycleItem = () => {
     setSuggestedItems(filtered.map((item) => ({ value: item.name, label: item.name })));
   };
 
-  const handleSearchChange = (value) => {
-    setSearchTerm(value);
+  const handleSearchChange = (selectedOption) => {
+    setSearchTerm(selectedOption.value);
 
     // Filter items based on the search term
     const filtered = suggestedItems.filter((item) =>
-      item.label.toLowerCase().includes(value.toLowerCase())
+      item.label.toLowerCase().includes(selectedOption.value.toLowerCase())
     );
 
     // Update filtered items and showItemList state
     setFilteredItems(filtered);
-    setShowItemList(value.length > 0); // Show suggestions only if the search term is not empty
+    setShowItemList(selectedOption.value.length > 0); // Show suggestions only if the search term is not empty
   };
 
   return (
     <div className="recycle-container">
       <h1 className="recycle-heading">Select Material to search:</h1>
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="error-message">{error}</p>}
+      {status.loading && <p>Loading...</p>}
+      {status.error && <p className="error-message">{status.error}</p>}
 
-      {!loading && !error && (
+      {!status.loading && !status.error && (
         <div>
           {selectedMaterial && (
             <div className="selected-material-container">
-              <h2 className="selected-material-heading">
-               {selectedMaterial}
-              </h2>
+              <h2 className="selected-material-heading">{selectedMaterial}</h2>
             </div>
           )}
 
@@ -94,7 +91,7 @@ const RecycleItem = () => {
             <Select
               options={suggestedItems}
               value={{ value: searchTerm, label: searchTerm }}
-              onChange={(selectedOption) => handleSearchChange(selectedOption.value)}
+              onChange={handleSearchChange}
               placeholder="Search for an item..."
             />
           </div>
@@ -102,10 +99,10 @@ const RecycleItem = () => {
           {selectedMaterial && showItemList && (
             <div className="selected-material-container">
               <ul className="item-list">
-                {filteredItems.map((name, index) => (
+                {filteredItems.map((item, index) => (
                   <li key={index} className="item-name">
                     <Link to="/where-to-recycle" className="location-link">
-                      {name.label}
+                      {item.label}
                     </Link>
                   </li>
                 ))}
@@ -115,7 +112,7 @@ const RecycleItem = () => {
 
           {/* Image container */}
           <div className="image-container">
-            <img src="/RecycleItemImage.jpg" alt="Background Image" />
+            <img src="/RecycleItemImage.jpg" alt="Background" />
           </div>
         </div>
       )}
