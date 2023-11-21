@@ -8,10 +8,10 @@ import Header from './component/Header';
 import News from './component/News';
 import Home from './component/Home';
 import Footer from './component/Footer';
+import Shop from './component/Shop';
 import './App.css';
 
 function App() {
-
   return (
     <Router>
       <div className="App">
@@ -23,6 +23,7 @@ function App() {
             <Route path="/where-to-recycle" element={<WhereToRecycle />} />
             <Route path="/about" element={<About />} />
             <Route path="/news" element={<News />} />
+            <Route path="/shop" element={<Shop />} />
           </Routes>
         </div>
         <Footer />

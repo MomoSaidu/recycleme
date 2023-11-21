@@ -78,14 +78,23 @@ body {
   text-align: center;
 }
 
+
 /* Paragraph Styles */
 p {
   font-family: 'Arial', sans-serif;
-  font-size: 32px;
-  line-height: 1.5;
+  font-size: 25px;
+  line-height: 1.6;
   color: #333;
   margin-bottom: 15px;
 }
+
+
+/* Highlighted Paragraph */
+p.highlight {
+  background-color: #ffd700; /* Yellow background color for highlighting */
+  font-weight: bold;
+}
+
 
 p.highlight {
   background-color: green;
@@ -155,8 +164,6 @@ h3,
     margin-bottom: 20px;
   }
 }
-
-
 
 /* Where to Recycle Styles */
 .where-to-recycle-container {
@@ -240,7 +247,6 @@ h3,
   margin-right: 10px;
 }
 
-
 /* Home Styles */
 .home-container {
   display: flex;
@@ -286,7 +292,7 @@ h3,
 .social-link:hover {
   text-decoration: underline;
 }
-/* ... (your existing styles) */
+
 /* CSS for the search bar */
 .search-bar {
   margin-bottom: 20px; /* Add some space below the search bar */
@@ -314,23 +320,87 @@ h3,
   background-color: #004d00;
 }
 
+/* Shop.css */
+.shop-container {
+  max-width: 800px;
+  margin: 20px auto; /* Add some margin for better spacing */
+  padding: 20px;
+  background-color: #fff; /* Match the background color of the global header */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
 
-.item-list {
-  list-style-type: none;
+.item-list,
+.cart-list {
+  list-style: none;
   padding: 0;
 }
 
-.item-name {
-  margin-bottom: 10px; /* Adjust as needed */
+.item,
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.location-link {
+.item-image,
+.cart-item-image {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.item-details,
+.cart-item-details {
+  flex: 1;
+}
+
+.add-to-cart,
+.remove-from-cart,
+.checkout {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  text-align: center;
   text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
+.add-to-cart:hover,
+.remove-from-cart:hover,
+.checkout:hover {
+  background-color: #45a049;
+}
+
+.total {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .item,
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-image,
+  .cart-item-image {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+/* Location Button Styles */
 .location-button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   text-align: center;
   text-decoration: none;

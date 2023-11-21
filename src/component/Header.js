@@ -18,6 +18,7 @@ function Header() {
         <Link className="nav-link" to="/where-to-recycle">Where To Recycle</Link>
         <Link className="nav-link" to="/about">About</Link>
         <Link className="nav-link" to="/news">News</Link>
+        <Link className="nav-link" to="/shop">Support Us</Link>
       </nav>
     </div>
   );
