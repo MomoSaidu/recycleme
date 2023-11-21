@@ -1,17 +1,24 @@
 import React from 'react';
 
 function About() {
+  const imageStyle = {
+    maxWidth: '100%', // Set a maximum width for responsiveness
+    maxHeight: '300px', // Set a maximum height to make the image slightly shorter
+    height: 'auto', // Allow the height to adjust proportionally
+    borderRadius: '8px', // Optional: Add border-radius for rounded corners
+  };
+
   return (
     <div className="about-container">
       <section className="about-section">
         <h2 className="green-text body-text">About Us</h2>
         <div className="flex-container">
           <div className="image-container">
-            {/* Add your image URL or use a placeholder */}
             <img
-              src="https://via.placeholder.com/150"
+              src="/AboutUs.jpg"
               alt="About Us"
               className="about-image"
+              style={imageStyle}
             />
           </div>
           <div className="text-container">
@@ -34,11 +41,11 @@ function About() {
         <h3 className="green-text body-text">Our Team</h3>
         <div className="flex-container">
           <div className="image-container">
-            {/* Add your team member images here */}
             <img
-              src="https://via.placeholder.com/150"
+              src="/OurTeam.jpg"
               alt="Team Member 1"
               className="team-image"
+              style={imageStyle}
             />
           </div>
           <div className="text-container">
@@ -55,11 +62,11 @@ function About() {
         <h3 className="green-text body-text">What We Do</h3>
         <div className="flex-container">
           <div className="image-container">
-            {/* Add your service-related image here */}
             <img
-              src="https://via.placeholder.com/150"
+              src="/WhatWeDo.jpg"
               alt="What We Do"
               className="services-image"
+              style={imageStyle}
             />
           </div>
           <div className="text-container">
@@ -78,11 +85,11 @@ function About() {
         <h3 className="green-text body-text">Contact Us</h3>
         <div className="flex-container">
           <div className="image-container">
-            {/* Add your contact-related image here */}
             <img
-              src="https://via.placeholder.com/150"
+              src="/ContactUs.jpg"
               alt="Contact Us"
               className="contact-image"
+              style={imageStyle}
             />
           </div>
           <div className="text-container">

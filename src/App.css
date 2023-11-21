@@ -140,7 +140,7 @@ h3,
 }
 
 .body-text {
-  font-size: 1.8em; /* Adjust the font size for body text */
+  font-size: 1.4em; /* Adjust the font size for body text to match Home.js */
 }
 
 /* Responsive adjustments */
