@@ -64,6 +64,7 @@ const WhereToRecycle = () => {
         <div className="recycling-info">
           <h2 className="selected-material-heading">{formattedMaterial}</h2>
           <p>{recyclingInfo[formattedMaterial]}</p>
+          <div className="purple-line"></div>
         </div>
       ) : (
         <div>
@@ -72,6 +73,7 @@ const WhereToRecycle = () => {
               <div key={key} className="recycling-info">
                 <h2 className="selected-material-heading">{key}</h2>
                 <p>{filteredRecyclingInfo[key]}</p>
+                <div className="purple-line"></div>
               </div>
             ))
           ) : (

@@ -55,10 +55,25 @@ const Shop = () => {
 
   return (
     <div className="shop-container">
-      <p className="green-text body-text">
-        When you choose to purchase items from our collection, you are not just acquiring products; you are actively contributing to a meaningful mission dedicated to environmental sustainability. With a commitment to the planet's well-being, our selection of eco-friendly products is curated to minimize ecological impact, promote responsible consumption, and inspire sustainable living practices. Your purchase directly supports initiatives aimed at environmental conservation, recycling awareness, and fostering a greener future. By investing in our products, you join us in building a community dedicated to positive environmental change, empowering individuals to make conscious choices that collectively contribute to a healthier, more sustainable planet. Together, we strive to create a harmonious balance between consumerism and environmental responsibility, demonstrating that every small action, like choosing sustainable products, plays a crucial role in preserving the beauty and vitality of our planet for generations to come.
+      <div className="purple-line"></div>
+      <p className="home-description">
+        <h2 className="green-text body-text">Welcome to a World of Conscious Choices</h2>
+        <p className="body-text">
+        <p>Embark on a journey of mindful living with every purchase from our unique collection. Beyond acquiring products, you're embracing a purpose a commitment to environmental sustainability that goes beyond the ordinary.</p>
+
+        <p>Discover an array of thoughtfully curated, eco-friendly products designed to make a positive impact. Our selection isn't just about what you buy; it's a conscious decision to minimize ecological footprints, encourage responsible consumption, and foster sustainable living practices.</p>
+
+        <p>With each item, you play a vital role in supporting initiatives dedicated to environmental conservation, recycling awareness, and the pursuit of a greener future. Your choice echoes through our collective effort to build a community devoted to positive environmental change.</p>
+
+        <p>We believe in the power of individual choices, and by investing in our products, you become a part of a movement. Together, we're creating a harmonious balance between consumerism and environmental responsibility, illustrating that even small actions like choosing sustainable products contribute significantly to preserving the beauty and vitality of our planet for generations to come.</p>
+
+        <h1 className="green-text body-text" style={{ fontSize: '24px' }}>
+          Join us in this journey towards a healthier, more sustainable planet. Your conscious choices Together, we can make a difference.
+        </h1>
+        </p>
       </p>
-      <h1>Please Help Support By Puchasing The Items Below</h1>
+      <div className="purple-line"></div>
+      <h1 className="green-text body-text">Please Help Support By Purchasing The Items Below</h1>
       <div>
         <h2 className="green-text body-text">Items for Sale:</h2>
         <ul className="item-list">

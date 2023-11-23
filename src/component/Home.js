@@ -11,6 +11,8 @@ function Home() {
   return (
     <div className="home-container">
       <div className="home-content"> {/* Remove the left margin */}
+      <div className="purple-line"></div>
+
         <h1 className="home-title" style={{ color: '#4caf50', fontSize: '2.5rem' }}>Welcome to RecycleNow</h1> {/* Increase font size */}
         <p className="home-description">
           Recycling is a key part of reducing global carbon emissions and it is widely used by many people across the world. It involves turning waste materials into reusable material to prevent waste of potentially useful materials, reduce the consumption of fresh raw materials, and lower greenhouse gas emissions.
@@ -27,8 +29,12 @@ function Home() {
         <p className="home-description">
           Explore our resources, learn about different materials, and discover convenient recycling locations near you. Together, we can make a positive impact on the environment. Thank you for choosing to recycle now!
         </p>
+        <div className="purple-line"></div>
+
       </div>
+      
       <div className="home-image-container">
+        
         <img src={recyclingImage} alt="Recycling" style={imageStyle} />
       </div>
     </div>

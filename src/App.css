@@ -322,10 +322,11 @@ h3,
 
 /* Shop.css */
 .shop-container {
-  max-width: 800px;
-  margin: 20px auto; /* Add some margin for better spacing */
+  max-width: 1000px;
+  margin: 40px auto; /* Add some margin for better spacing */
   padding: 20px;
-  background-color: #fff; /* Match the background color of the global header */
+  background-color: rgba(248, 249, 250, 0.5); /* 50% transparent background */
+
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 
@@ -414,4 +415,10 @@ h3,
 
 .location-button:hover {
   background-color: #45a049; /* Darker green on hover, change as needed */
+}
+
+.purple-line {
+  height: 2px; /* Adjust the height as needed */
+  background-color: rgba(137, 14, 253, 0.50); /* Purple with 25% transparency */
+  margin-bottom: 20px; /* Adjust the margin as needed */
 }
