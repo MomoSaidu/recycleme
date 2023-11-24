@@ -3,14 +3,14 @@ import recyclingImage from '../images/recycling.jpg';
 
 function Home() {
   const imageStyle = {
-    width: '50%', // Set the width to 75% of the original size
-    height: '50%', // Set the height to 75% of the original size
+    width: '50%', // Set the width to 50% of the original size
+    height: '50%', // Set the height to 50% of the original size
     marginBottom: '10px', // Add margin to the bottom for visual spacing
   };
 
   return (
     <div className="home-container">
-      <div className="home-content"> {/* Remove the left margin */}
+      <div className="home-content"> 
       <div className="purple-line"></div>
 
         <h1 className="home-title" style={{ color: '#4caf50', fontSize: '2.5rem' }}>Welcome to RecycleNow</h1> {/* Increase font size */}

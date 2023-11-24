@@ -48,7 +48,7 @@ const Shop = () => {
 
   const checkout = () => {
     // Perform checkout logic, e.g., send order to a server
-    // For this example, we'll just clear the shopping cart
+    // We'll just clear the shopping cart
     setCart([]);
     alert('Thank you for your purchase!');
   };
