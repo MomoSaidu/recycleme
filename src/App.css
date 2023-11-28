@@ -78,7 +78,6 @@ body {
   text-align: center;
 }
 
-
 /* Paragraph Styles */
 p {
   font-family: 'Arial', sans-serif;
@@ -88,16 +87,9 @@ p {
   margin-bottom: 15px;
 }
 
-
 /* Highlighted Paragraph */
 p.highlight {
   background-color: #ffd700; /* Yellow background color for highlighting */
-  font-weight: bold;
-}
-
-
-p.highlight {
-  background-color: green;
   font-weight: bold;
 }
 
@@ -322,11 +314,10 @@ h3,
 
 /* Shop.css */
 .shop-container {
-  max-width: 1000px;
+  max-width: 800px;
   margin: 40px auto; /* Add some margin for better spacing */
   padding: 20px;
   background-color: rgba(248, 249, 250, 0.5); /* 50% transparent background */
-
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 
@@ -384,20 +375,6 @@ h3,
   margin-top: 10px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .item,
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .item-image,
-  .cart-item-image {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
 /* Location Button Styles */
 .location-button {
   display: inline-block;
@@ -422,3 +399,32 @@ h3,
   background-color: rgba(137, 14, 253, 0.50); /* Purple with 25% transparency */
   margin-bottom: 20px; /* Adjust the margin as needed */
 }
+
+/* Checkout box */
+.shop-container.checkout {
+  max-width: 400px; /* Adjusted max-width for smaller checkout box */
+  padding: 10px; /* Reduced padding for a more compact box */
+}
+
+.checkout-content {
+  text-align: center;
+}
+
+.checkout h2 {
+  font-size: 1.8rem; /* Adjusted font size for checkout heading */
+  color: #006400;
+  margin-bottom: 10px;
+}
+
+.checkout p {
+  font-size: 1.2rem;
+}
+
+.checkout-buttons {
+  margin-top: 10px;
+}
+
+.checkout-buttons button {
+  margin: 0 5px;
+}
+

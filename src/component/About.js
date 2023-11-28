@@ -1,15 +1,21 @@
 import React from 'react';
 
+/**
+ * Component displaying information about RecycleNow, including mission,
+ * team details, services, and contact information.
+ */
 function About() {
+  // Style for images to ensure responsiveness and aesthetics
   const imageStyle = {
-    maxWidth: '100%', // Set a maximum width for responsiveness
-    maxHeight: '300px', // Set a maximum height to make the image slightly shorter
-    height: 'auto', // Allow the height to adjust proportionally
-    borderRadius: '8px', // Optional: Add border-radius for rounded corners
+    maxWidth: '100%', 
+    maxHeight: '300px', 
+    height: 'auto', 
+    borderRadius: '8px', 
   };
 
   return (
     <div className="about-container">
+      {/* About Us Section */}
       <section className="about-section">
         <h2 className="green-text body-text">About Us</h2>
         <div className="flex-container">
@@ -37,6 +43,7 @@ function About() {
         </div>
       </section>
 
+      {/* Our Team Section */}
       <section className="team-section">
         <h3 className="green-text body-text">Our Team</h3>
         <div className="flex-container">
@@ -58,6 +65,7 @@ function About() {
         </div>
       </section>
 
+      {/* What We Do Section */}
       <section className="services-section">
         <h3 className="green-text body-text">What We Do</h3>
         <div className="flex-container">
@@ -81,6 +89,7 @@ function About() {
         </div>
       </section>
 
+      {/* Contact Us Section */}
       <section className="contact-section">
         <h3 className="green-text body-text">Contact Us</h3>
         <div className="flex-container">
@@ -95,7 +104,11 @@ function About() {
           <div className="text-container">
             <p className="body-text">
               If you have any questions or would like to get in touch with us, feel
-              free to contact us at <a href="mailto:RecycleNow@..." className="contact-link">RecycleNow@...</a>.
+              free to contact us at{' '}
+              <a href="mailto:RecycleNow@..." className="contact-link">
+                RecycleNow@...
+              </a>
+              .
             </p>
           </div>
         </div>

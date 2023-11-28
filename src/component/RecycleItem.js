@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
+/**
+ * Component for searching and displaying recycle items based on material.
+ */
 const RecycleItem = () => {
+  // State variables for managing data and component behavior
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedMaterial, setSelectedMaterial] = useState('');
@@ -11,6 +15,7 @@ const RecycleItem = () => {
   const [showItemList, setShowItemList] = useState(false);
   const [suggestedItems, setSuggestedItems] = useState([]);
 
+  // Fetch data from the API when the component mounts
   const fetchData = async () => {
     try {
       const response = await fetch('/api.json');
@@ -34,10 +39,12 @@ const RecycleItem = () => {
     }
   };
 
+  // Fetch data on component mount
   useEffect(() => {
     fetchData();
   }, []);
 
+  // Filter items based on the selected material
   const filterByMaterial = (material) => {
     const filtered = items[material] || [];
     setFilteredItems(filtered);
@@ -46,6 +53,7 @@ const RecycleItem = () => {
     setSuggestedItems(filtered.map((item) => ({ value: item.name, label: item.name })));
   };
 
+  // Handle changes in the search input
   const handleSearchChange = (selectedOption) => {
     setSearchTerm(selectedOption.value);
 
@@ -63,17 +71,21 @@ const RecycleItem = () => {
     <div className="recycle-container">
       <h1 className="recycle-heading">Select Material to search:</h1>
 
+      {/* Loading and error messages */}
       {status.loading && <p>Loading...</p>}
       {status.error && <p className="error-message">{status.error}</p>}
 
+      {/* Render content if data is loaded successfully */}
       {!status.loading && !status.error && (
         <div>
+          {/* Display selected material heading */}
           {selectedMaterial && (
             <div className="selected-material-container">
               <h2 className="selected-material-heading">{selectedMaterial}</h2>
             </div>
           )}
 
+          {/* Material selection buttons */}
           <div className="material-buttons">
             {Object.keys(items).map((material) => (
               <button
@@ -96,23 +108,20 @@ const RecycleItem = () => {
             />
           </div>
 
+          {/* Display filtered items if a material is selected */}
           {selectedMaterial && showItemList && (
-  <div className="selected-material-container">
-    <ul className="item-list">
-      {filteredItems.map((item, index) => (
-        <li key={index} className="item-name">
-          <Link to="/where-to-recycle" className="location-link">
-            <button className="location-button">
-              {item.label}
-            </button>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-
-
+            <div className="selected-material-container">
+              <ul className="item-list">
+                {filteredItems.map((item, index) => (
+                  <li key={index} className="item-name">
+                    <Link to="/where-to-recycle" className="location-link">
+                      <button className="location-button">{item.label}</button>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Image container */}
           <div className="image-container">

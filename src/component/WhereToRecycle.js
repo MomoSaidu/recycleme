@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+/**
+ * Component that provides information on where to recycle different materials.
+ */
 const WhereToRecycle = () => {
+  // Extract the 'material' parameter from the URL
   const { material } = useParams();
 
+  // Recycling information for different materials
   const recyclingInfo = {
     Metal: `
       Common metals like aluminum and steel can often be recycled through curbside recycling programs.
@@ -34,6 +39,7 @@ const WhereToRecycle = () => {
     `,
   };
 
+  // State for search term input
   const [searchTerm, setSearchTerm] = useState('');
 
   // Convert material to uppercase
@@ -49,8 +55,10 @@ const WhereToRecycle = () => {
 
   return (
     <div className="where-to-recycle-container">
+      {/* Heading for the Where to Recycle section */}
       <h1 className="where-to-recycle-heading">Where to Recycle</h1>
 
+      {/* Search bar for filtering materials */}
       <div className="search-bar">
         <input
           type="text"
@@ -60,6 +68,7 @@ const WhereToRecycle = () => {
         />
       </div>
 
+      {/* Display recycling information based on the selected material or filtered results */}
       {formattedMaterial && recyclingInfo[formattedMaterial] ? (
         <div className="recycling-info">
           <h2 className="selected-material-heading">{formattedMaterial}</h2>
@@ -68,6 +77,7 @@ const WhereToRecycle = () => {
         </div>
       ) : (
         <div>
+          {/* Display filtered results or a message if no results match the search */}
           {Object.keys(filteredRecyclingInfo).length > 0 ? (
             Object.keys(filteredRecyclingInfo).map((key) => (
               <div key={key} className="recycling-info">

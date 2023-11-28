@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import tshirtImage from '../images/tshirt.png';
 import jacketImage from '../images/jacket.png';
 import bottleImage from '../images/bottle.png';
 import keyChainImage from '../images/keyChain.png';
 import posterImage from '../images/poster.png';
+import StripeCheckout from 'react-stripe-checkout';
+import { toast } from 'react-toastify';
+
+
 
 const Shop = () => {
+  // State for shopping cart and checkout modal
   const [cart, setCart] = useState([]);
+  const [isCheckoutOpen, setCheckoutOpen] = useState(false);
+
+  // Array of items for sale
   const [items] = useState([
     { id: 1, name: 'T-shirt', price: 20, image: tshirtImage },
     { id: 2, name: 'Jacket', price: 50, image: jacketImage },
@@ -15,11 +24,11 @@ const Shop = () => {
     { id: 5, name: 'Poster', price: 15, image: posterImage },
   ]);
 
+  // Function to add an item to the cart
   const addToCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.id === item.id);
 
     if (existingItem) {
-      // If the item already exists in the cart, update its quantity
       const updatedCart = cart.map((cartItem) =>
         cartItem.id === item.id
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
@@ -27,37 +36,63 @@ const Shop = () => {
       );
       setCart(updatedCart);
     } else {
-      // If the item is not in the cart, add it with quantity 1
       setCart([...cart, { ...item, quantity: 1 }]);
     }
   };
 
+  // Function to remove an item from the cart
   const removeFromCart = (itemId) => {
-    const updatedCart = cart.map((item) =>
-      item.id === itemId
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    ).filter((item) => item.quantity > 0);
+    const updatedCart = cart
+      .map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+      )
+      .filter((item) => item.quantity > 0);
 
     setCart(updatedCart);
   };
 
+  // Function to calculate the total price of items in the cart
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
-  const checkout = () => {
-    // Perform checkout logic, e.g., send order to a server
-    // We'll just clear the shopping cart
-    setCart([]);
-    alert('Thank you for your purchase!');
+  // Function to handle the payment token received from Stripe
+  const handleToken = async (token, addresses) => {
+    const res = await axios.post('https://your-server/checkout', {
+      token,
+      cart,
+    });
+    const { status } = res.data;
+    if (status === 'success') {
+      toast('Success! Check emails for details', {
+        type: 'success',
+      });
+    } else {
+      toast('Something went wrong', {
+        type: 'failure',
+      });
+    }
   };
 
+  // Function to open the checkout modal
+  const openCheckout = () => {
+    setCheckoutOpen(true);
+  };
+
+  // Function to close the checkout modal
+  const closeCheckout = () => {
+    setCheckoutOpen(false);
+  };
+
+  // JSX for the component
   return (
     <div className="shop-container">
       <div className="purple-line"></div>
       <p className="home-description">
-        <h2 className="green-text body-text">Welcome to a World of Conscious Choices</h2>
+      <h2 className="green-text body-text">Welcome to a World of Conscious Choices</h2>
         <p className="body-text">
         <p>Embark on a journey of mindful living with every purchase from our unique collection. Beyond acquiring products, you're embracing a purpose a commitment to environmental sustainability that goes beyond the ordinary.</p>
 
@@ -76,6 +111,7 @@ const Shop = () => {
       <h1 className="green-text body-text">Please Help Support By Purchasing The Items Below</h1>
       <div>
         <h2 className="green-text body-text">Items for Sale:</h2>
+        {/* List of items for sale */}
         <ul className="item-list">
           {items.map((item) => (
             <li key={item.id} className="item">
@@ -85,7 +121,7 @@ const Shop = () => {
                 className="item-image"
               />
               <span className="item-details">
-                {item.name} -  €{item.price}
+                {item.name} - €{item.price}
               </span>
               <button className="add-to-cart" onClick={() => addToCart(item)}>
                 Add to Cart
@@ -96,6 +132,7 @@ const Shop = () => {
       </div>
       <div>
         <h2 className="green-text body-text">Shopping Cart:</h2>
+        {/* List of items in the shopping cart */}
         <ul className="cart-list">
           {cart.map((item) => (
             <li key={item.id} className="cart-item">
@@ -105,7 +142,7 @@ const Shop = () => {
                 className="cart-item-image"
               />
               <span className="cart-item-details">
-                {item.name} -  €{item.price} (Quantity: {item.quantity})
+                {item.name} - €{item.price} (Quantity: {item.quantity})
               </span>
               <button className="remove-from-cart" onClick={() => removeFromCart(item.id)}>
                 Remove from Cart
@@ -113,10 +150,37 @@ const Shop = () => {
             </li>
           ))}
         </ul>
-        <p className="total body-text">Total:  €{calculateTotal()}</p>
-        <button className="checkout" onClick={checkout}>
+        {/* Display total price and checkout button */}
+        <p className="total body-text">Total: €{calculateTotal()}</p>
+        <button className="checkout" onClick={openCheckout}>
           Checkout
         </button>
+        {/* Modal for checkout */}
+        {isCheckoutOpen && (
+          <div className="modal">
+            <h2>Checkout</h2>
+            <p>Total: €{calculateTotal()}</p>
+            {/* Stripe checkout component */}
+            <StripeCheckout
+              stripeKey="your_stripe_public_key"
+              token={handleToken}
+              billingAddress
+              shippingAddress
+              amount={calculateTotal() * 100} // amount in cents
+              name="Your Shop Name"
+              description="Purchase Description"
+              image="path_to_your_logo_image"
+            >
+              <button className="checkout">Complete Purchase</button>
+            </StripeCheckout>
+            {/* Button to close the checkout modal */}
+            <button className="checkout" onClick={closeCheckout}>
+              Close
+            </button>
+          </div>
+        )}
+        {/* Overlay to cover the background when the modal is open */}
+        {isCheckoutOpen && <div className="overlay" onClick={closeCheckout}></div>}
       </div>
     </div>
   );
