@@ -18,7 +18,7 @@ const RecycleItem = () => {
   // Fetch data from the API when the component mounts
   const fetchData = async () => {
     try {
-      const response = await fetch('/api.json');
+      const response = await fetch('/api.json')
 
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
@@ -124,9 +124,16 @@ const RecycleItem = () => {
           )}
 
           {/* Image container */}
-          <div className="image-container">
-            <img src="/RecycleItemImage.jpg" alt="Background" />
-          </div>
+          <div className="row">
+            <div className="col">
+              <img
+                src="/RecycleItemImage.jpg"
+                alt="Background"
+                className="img-fluid"
+                style={{ maxWidth: '100%' }}
+              />
+            </div>
+        </div>
         </div>
       )}
     </div>

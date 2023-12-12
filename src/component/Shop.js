@@ -167,12 +167,13 @@ const Shop = () => {
               billingAddress
               shippingAddress
               amount={calculateTotal() * 100} // amount in cents
-              name="Your Shop Name"
-              description="Purchase Description"
-              image="path_to_your_logo_image"
+              name="RecycleNow"
+              description="Thank you for your Support!"
+              image=""
             >
               <button className="checkout">Complete Purchase</button>
             </StripeCheckout>
+
             {/* Button to close the checkout modal */}
             <button className="checkout" onClick={closeCheckout}>
               Close

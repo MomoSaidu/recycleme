@@ -364,10 +364,13 @@ h3,
   border-radius: 4px;
 }
 
+.remove-from-cart:hover {
+  background-color: #ff3333; /* Change the background color on hover */
+}
+
 .add-to-cart:hover,
-.remove-from-cart:hover,
 .checkout:hover {
-  background-color: #45a049;
+  background-color:  rgba(137, 14, 253, 0.50);
 }
 
 .total {
@@ -427,4 +430,5 @@ h3,
 .checkout-buttons button {
   margin: 0 5px;
 }
+
 

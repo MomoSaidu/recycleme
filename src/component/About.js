@@ -108,7 +108,7 @@ function About() {
               <a href="mailto:RecycleNow@..." className="contact-link">
                 RecycleNow@...
               </a>
-              .
+              
             </p>
           </div>
         </div>
