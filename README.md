@@ -1,3 +1,42 @@
+React and React-DOM:
+
+Packages: react, react-dom
+Purpose: These are the core libraries for building React applications. react contains the functionality for defining React components, and react-dom is responsible for rendering those components in the DOM.
+React Router:
+
+Package: react-router-dom
+Purpose: React Router provides navigation and routing capabilities to the React application. It allows you to define different routes and their corresponding components, enabling a single-page application (SPA) experience.
+Ant Design:
+
+Package: antd
+Purpose: Ant Design is a React UI library that provides a set of high-quality components and styles. In this app, Ant Design is used for building the user interface, including cards, buttons, and input components.
+Axios:
+
+Package: axios
+Purpose: Axios is a promise-based HTTP client that simplifies making HTTP requests. In the app, Axios is used to fetch data from an external API (news articles).
+React-Stripe-Checkout:
+
+Package: react-stripe-checkout
+Purpose: This package provides a React component for integrating with Stripe Checkout, a pre-built checkout page hosted by Stripe. It simplifies the process of handling payments in the app.
+React-Toastify:
+
+Package: react-toastify
+Purpose: React Toastify is a library for displaying toast notifications in React applications. In this app, it is used to show success or failure messages when processing payments or other actions.
+Ant Design Styles:
+
+Package: antd/dist/antd.css
+Purpose: This is the stylesheet for Ant Design. It contains the default styles for Ant Design components. Importing this file ensures that the styles are applied to the components used in the app.
+React Scripts:
+
+Package: react-scripts
+Purpose: React Scripts provides scripts and configurations for Create React App. It includes development and build scripts, making it easy to set up and run React applications.
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
