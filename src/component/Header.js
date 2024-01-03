@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logoImage from '../images/Untitled.jpeg'; // Update the path to your image
 
 /**
  * Header component for the application.
@@ -12,7 +13,7 @@ function Header() {
       <h1 className="title">
         <Link to="/">
           <img
-            src="Untitled.jpeg" // Update the path to your image
+            src={logoImage}
             alt="RecycleNow Logo"
             style={{ width: '200px', height: 'auto' }}
           />

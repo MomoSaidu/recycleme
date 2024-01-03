@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
+import RecycleItemImage from '../images/RecycleItemImage.jpg'; // Adjust the path based on your folder structure
 
 /**
  * Component for searching and displaying recycle items based on material.
@@ -18,7 +19,7 @@ const RecycleItem = () => {
   // Fetch data from the API when the component mounts
   const fetchData = async () => {
     try {
-      const response = await fetch('/api.json')
+      const response = await fetch('/api.json');
 
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
@@ -127,13 +128,13 @@ const RecycleItem = () => {
           <div className="row">
             <div className="col">
               <img
-                src="/RecycleItemImage.jpg"
-                alt="Background"
+                src={RecycleItemImage}
+                alt="Recycle Item"
                 className="img-fluid"
                 style={{ maxWidth: '100%' }}
               />
             </div>
-        </div>
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,11 @@
 import React from 'react';
 
+// Importing images
+import aboutUsImage from '../images/AboutUs.jpg';
+import ourTeamImage from '../images/OurTeam.jpg';
+import whatWeDoImage from '../images/WhatWeDo.jpg';
+import contactUsImage from '../images/ContactUs.jpg';
+
 /**
  * Component displaying information about RecycleNow, including mission,
  * team details, services, and contact information.
@@ -21,7 +27,7 @@ function About() {
         <div className="flex-container">
           <div className="image-container">
             <img
-              src="/AboutUs.jpg"
+              src={aboutUsImage}
               alt="About Us"
               className="about-image"
               style={imageStyle}
@@ -49,7 +55,7 @@ function About() {
         <div className="flex-container">
           <div className="image-container">
             <img
-              src="/OurTeam.jpg"
+              src={ourTeamImage}
               alt="Team Member 1"
               className="team-image"
               style={imageStyle}
@@ -71,7 +77,7 @@ function About() {
         <div className="flex-container">
           <div className="image-container">
             <img
-              src="/WhatWeDo.jpg"
+              src={whatWeDoImage}
               alt="What We Do"
               className="services-image"
               style={imageStyle}
@@ -95,7 +101,7 @@ function About() {
         <div className="flex-container">
           <div className="image-container">
             <img
-              src="/ContactUs.jpg"
+              src={contactUsImage}
               alt="Contact Us"
               className="contact-image"
               style={imageStyle}
